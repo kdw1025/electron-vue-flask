@@ -2,15 +2,18 @@ module.exports = {
   pluginOptions: {
     electronBuilder: {
       builderOptions: {
-          "extraResources": [
-              {
-                  "from": "./extraResources/server/dist/server/",
-                  "to": "extraResources/server",
-                  "filter": [
-                      "**/*"
-                  ]
-              }
-          ]
+        "win": {
+          "target": "zip"
+        },
+        "extraResources": [
+            {
+                "from": "server/dist/server/",
+                "to": "extraResources/server",
+                "filter": [
+                    "**/*"
+                ]
+            }
+        ]
       }
     }
   }

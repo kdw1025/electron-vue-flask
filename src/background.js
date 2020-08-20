@@ -53,8 +53,11 @@ function createWindow() {
 
 function spawnFlask() {
   if (flask === null) {
-    // flask = spawn('./server/server.exe', { detached: false });
-    flask = spawn('./server/dist/server/server.exe');
+    console.log(`isDevelpment: ${isDevelopment}`);
+    console.log(`__dirname: ${__dirname}`);
+    flask = spawn(isDevelopment 
+                  ? './server/dist/server/server.exe'
+                  : './resources/extraResources/server/server.exe');
     console.log(`flask pid: ${flask.pid}`);
 
     flask.stdout.on('data', (data) => {
@@ -98,8 +101,8 @@ app.on("ready", async () => {
       console.error("Vue Devtools failed to install:", e.toString());
     }
   }
-  createWindow();
   spawnFlask();
+  createWindow();
 });
 
 // Exit cleanly on request from parent process in development mode.
